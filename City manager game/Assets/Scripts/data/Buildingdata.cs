@@ -8,8 +8,9 @@ public class BuildingData : ScriptableObject
     public string buildingName;
     public int cost;
     public BuildingSector sector;
-    public float sectorValue;      // was int — now float, e.g. School = 0.1, Home = 20
+    public float sectorValue;
     public int weeklyMoneyChange;
+    public GameObject prefab;
 
     [Header("School-specific (unused by other sectors)")]
     public int maxCapacity;

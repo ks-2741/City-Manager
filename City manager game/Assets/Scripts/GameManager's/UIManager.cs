@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
+    [Header("HUD")]
     [SerializeField] private TMP_Text _moneyText;
     [SerializeField] private TMP_Text _educationText;
     [SerializeField] private TMP_Text _populationText;
@@ -12,6 +13,9 @@ public class UIManager : MonoBehaviour
     [Header("Approval Panel")]
     [SerializeField] private GameObject _approvalPanel;
     [SerializeField] private TMP_Text _approvalPanelText;
+
+    [Header("Build Panel")]
+    [SerializeField] private GameObject _buildPanel;
 
     private void Awake()
     {
@@ -34,14 +38,10 @@ public class UIManager : MonoBehaviour
         UpdateEducationDisplay(CityStatsManager.Instance.EducationScore);
         UpdatePopulationDisplay(CityStatsManager.Instance.Population);
 
+        _approvalPanel.SetActive(false);
+        _buildPanel.SetActive(false);
+
         GameManager.Instance.ReportManagerInitialized(nameof(UIManager));
-
-
-
-        PublicImageManager.Instance.OnApprovalChanged += UpdateApprovalPanel;
-        UpdateApprovalPanel(PublicImageManager.Instance.Approval);
-
-        _approvalPanel.SetActive(false); // hidden by default
     }
 
     private void OnDisable()
@@ -54,9 +54,6 @@ public class UIManager : MonoBehaviour
             CityStatsManager.Instance.OnEducationChanged -= UpdateEducationDisplay;
             CityStatsManager.Instance.OnPopulationChanged -= UpdatePopulationDisplay;
         }
-
-        if (PublicImageManager.Instance != null)
-            PublicImageManager.Instance.OnApprovalChanged -= UpdateApprovalPanel;
     }
 
     private void UpdateMoneyDisplay(int newAmount)
@@ -74,13 +71,39 @@ public class UIManager : MonoBehaviour
         _populationText.text = $"Population: {pop}";
     }
 
-    private void UpdateApprovalPanel(float approval)
-    {
-        _approvalPanelText.text = $"Public Approval: {approval:0}%";
-    }
-
+    // Hooked up to the approval button's OnClick()
     public void ToggleApprovalPanel()
     {
-        _approvalPanel.SetActive(!_approvalPanel.activeSelf);
+        bool willBeActive = !_approvalPanel.activeSelf;
+        _approvalPanel.SetActive(willBeActive);
+
+        if (willBeActive)
+            RefreshApprovalPanelDetails();
+    }
+
+    private void RefreshApprovalPanelDetails()
+    {
+        int schoolCount = BuildingManager.Instance.GetBuildingCount(BuildingSector.Education);
+        int totalBuildings = BuildingManager.Instance.TotalBuildingCount;
+        float education = CityStatsManager.Instance.EducationScore;
+        float approval = PublicImageManager.Instance.Approval;
+
+        _approvalPanelText.text =
+            $"Public Approval: {approval:0}%\n\n" +
+            $"Schools: {schoolCount}\n" +
+            $"Education Rating: {education:0.0}/10\n" +
+            $"Total Buildings: {totalBuildings}";
+    }
+
+    // Hooked up to the "open build menu" button's OnClick()
+    public void OpenBuildPanel()
+    {
+        _buildPanel.SetActive(true);
+    }
+
+    // Called by BuildingPlacementManager once a building is selected
+    public void CloseBuildPanel()
+    {
+        _buildPanel.SetActive(false);
     }
 }

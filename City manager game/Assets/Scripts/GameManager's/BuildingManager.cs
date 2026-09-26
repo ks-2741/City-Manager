@@ -6,7 +6,6 @@ public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
 
-    
     private readonly List<BuildingData> _placedBuildings = new List<BuildingData>();
 
     public static event Action<BuildingData> OnBuildingPlaced;
@@ -15,6 +14,7 @@ public class BuildingManager : MonoBehaviour
     public static event Action<int> OnWeeklyEconomyTick;
     public int LastWeeklyEconomyChange { get; private set; }
 
+    public int TotalBuildingCount => _placedBuildings.Count;
 
     private void Awake()
     {
@@ -42,6 +42,24 @@ public class BuildingManager : MonoBehaviour
         OnBuildingPlaced?.Invoke(data);
     }
 
+    // Call this from buildings already sitting in the scene at load time
+    public void RegisterExistingBuilding(BuildingData data)
+    {
+        _placedBuildings.Add(data);
+        OnBuildingRegistered?.Invoke(data);
+    }
+
+    public int GetBuildingCount(BuildingSector sector)
+    {
+        int count = 0;
+        foreach (var b in _placedBuildings)
+        {
+            if (b.sector == sector)
+                count++;
+        }
+        return count;
+    }
+
     private void HandleWeekPassed()
     {
         int weeklyTotal = 0;
@@ -52,12 +70,4 @@ public class BuildingManager : MonoBehaviour
         EconomyManager.Instance.ApplyWeeklyChange(weeklyTotal);
         OnWeeklyEconomyTick?.Invoke(weeklyTotal);
     }
-
-    public void RegisterExistingBuilding(BuildingData data)
-    {
-        _placedBuildings.Add(data);
-        OnBuildingRegistered?.Invoke(data);
-    }
-
-
 }
