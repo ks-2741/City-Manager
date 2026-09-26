@@ -12,6 +12,10 @@ public class BuildingManager : MonoBehaviour
     public static event Action<BuildingData> OnBuildingPlaced;
     public static event Action<BuildingData> OnBuildingRegistered;
 
+    public static event Action<int> OnWeeklyEconomyTick;
+    public int LastWeeklyEconomyChange { get; private set; }
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,11 +46,11 @@ public class BuildingManager : MonoBehaviour
     {
         int weeklyTotal = 0;
         foreach (var building in _placedBuildings)
-        {
             weeklyTotal += building.weeklyMoneyChange;
-        }
 
+        LastWeeklyEconomyChange = weeklyTotal;
         EconomyManager.Instance.ApplyWeeklyChange(weeklyTotal);
+        OnWeeklyEconomyTick?.Invoke(weeklyTotal);
     }
 
     public void RegisterExistingBuilding(BuildingData data)
@@ -54,4 +58,6 @@ public class BuildingManager : MonoBehaviour
         _placedBuildings.Add(data);
         OnBuildingRegistered?.Invoke(data);
     }
+
+
 }

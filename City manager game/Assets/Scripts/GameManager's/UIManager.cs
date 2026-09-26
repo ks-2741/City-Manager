@@ -9,6 +9,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text _educationText;
     [SerializeField] private TMP_Text _populationText;
 
+    [Header("Approval Panel")]
+    [SerializeField] private GameObject _approvalPanel;
+    [SerializeField] private TMP_Text _approvalPanelText;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,6 +35,13 @@ public class UIManager : MonoBehaviour
         UpdatePopulationDisplay(CityStatsManager.Instance.Population);
 
         GameManager.Instance.ReportManagerInitialized(nameof(UIManager));
+
+
+
+        PublicImageManager.Instance.OnApprovalChanged += UpdateApprovalPanel;
+        UpdateApprovalPanel(PublicImageManager.Instance.Approval);
+
+        _approvalPanel.SetActive(false); // hidden by default
     }
 
     private void OnDisable()
@@ -43,6 +54,9 @@ public class UIManager : MonoBehaviour
             CityStatsManager.Instance.OnEducationChanged -= UpdateEducationDisplay;
             CityStatsManager.Instance.OnPopulationChanged -= UpdatePopulationDisplay;
         }
+
+        if (PublicImageManager.Instance != null)
+            PublicImageManager.Instance.OnApprovalChanged -= UpdateApprovalPanel;
     }
 
     private void UpdateMoneyDisplay(int newAmount)
@@ -58,5 +72,15 @@ public class UIManager : MonoBehaviour
     private void UpdatePopulationDisplay(int pop)
     {
         _populationText.text = $"Population: {pop}";
+    }
+
+    private void UpdateApprovalPanel(float approval)
+    {
+        _approvalPanelText.text = $"Public Approval: {approval:0}%";
+    }
+
+    public void ToggleApprovalPanel()
+    {
+        _approvalPanel.SetActive(!_approvalPanel.activeSelf);
     }
 }

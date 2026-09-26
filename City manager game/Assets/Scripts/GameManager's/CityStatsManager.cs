@@ -5,6 +5,8 @@ public class CityStatsManager : MonoBehaviour
 {
     public static CityStatsManager Instance { get; private set; }
 
+    public int TotalEducationCapacity { get; private set; }
+
     [SerializeField] private float _startingEducation = 1f;
 
 
@@ -45,6 +47,7 @@ public class CityStatsManager : MonoBehaviour
         {
             case BuildingSector.Education:
                 EducationScore = Mathf.Clamp(EducationScore + data.sectorValue, 1f, 10f);
+                TotalEducationCapacity += data.maxCapacity;
                 OnEducationChanged?.Invoke(EducationScore);
                 break;
 
