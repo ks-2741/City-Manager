@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [SerializeField] private TMP_Text _moneyText;
+    [SerializeField] private TMP_Text _educationText;
+    [SerializeField] private TMP_Text _populationText;
 
     private void Awake()
     {
@@ -23,6 +25,11 @@ public class UIManager : MonoBehaviour
         EconomyManager.Instance.OnMoneyChanged += UpdateMoneyDisplay;
         UpdateMoneyDisplay(EconomyManager.Instance.Money);
 
+        CityStatsManager.Instance.OnEducationChanged += UpdateEducationDisplay;
+        CityStatsManager.Instance.OnPopulationChanged += UpdatePopulationDisplay;
+        UpdateEducationDisplay(CityStatsManager.Instance.EducationScore);
+        UpdatePopulationDisplay(CityStatsManager.Instance.Population);
+
         GameManager.Instance.ReportManagerInitialized(nameof(UIManager));
     }
 
@@ -30,10 +37,26 @@ public class UIManager : MonoBehaviour
     {
         if (EconomyManager.Instance != null)
             EconomyManager.Instance.OnMoneyChanged -= UpdateMoneyDisplay;
+
+        if (CityStatsManager.Instance != null)
+        {
+            CityStatsManager.Instance.OnEducationChanged -= UpdateEducationDisplay;
+            CityStatsManager.Instance.OnPopulationChanged -= UpdatePopulationDisplay;
+        }
     }
 
     private void UpdateMoneyDisplay(int newAmount)
     {
         _moneyText.text = $"£{newAmount:N0}";
+    }
+
+    private void UpdateEducationDisplay(float score)
+    {
+        _educationText.text = $"Education: {score:0.0}/10";
+    }
+
+    private void UpdatePopulationDisplay(int pop)
+    {
+        _populationText.text = $"Population: {pop}";
     }
 }

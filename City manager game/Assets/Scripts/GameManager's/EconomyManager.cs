@@ -56,4 +56,10 @@ public class EconomyManager : MonoBehaviour
         Money += amount;
         OnMoneyChanged?.Invoke(Money);
     }
+
+    private void HandleBuildingPlaced(BuildingData data)
+    {
+        Money -= data.cost;
+        OnMoneyChanged?.Invoke(Money);
+    }
 }

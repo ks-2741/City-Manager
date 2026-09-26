@@ -8,6 +8,10 @@ public class BuildingData : ScriptableObject
     public string buildingName;
     public int cost;
     public BuildingSector sector;
-    public int sectorValue;       // how much this building raises its sector
-    public int weeklyMoneyChange; // negative for schools (cost), positive for business (income), 0 for homes for now
+    public float sectorValue;      // was int — now float, e.g. School = 0.1, Home = 20
+    public int weeklyMoneyChange;
+
+    [Header("School-specific (unused by other sectors)")]
+    public int maxCapacity;
+    public int quality;
 }

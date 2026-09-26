@@ -6,9 +6,11 @@ public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
 
-    public static event Action<int> OnBuildingPlaced; // cost, existing event
-
+    
     private readonly List<BuildingData> _placedBuildings = new List<BuildingData>();
+
+    public static event Action<BuildingData> OnBuildingPlaced;
+    public static event Action<BuildingData> OnBuildingRegistered;
 
     private void Awake()
     {
@@ -33,7 +35,7 @@ public class BuildingManager : MonoBehaviour
     public void PlaceBuilding(BuildingData data)
     {
         _placedBuildings.Add(data);
-        OnBuildingPlaced?.Invoke(data.cost);
+        OnBuildingPlaced?.Invoke(data);
     }
 
     private void HandleWeekPassed()
@@ -50,5 +52,6 @@ public class BuildingManager : MonoBehaviour
     public void RegisterExistingBuilding(BuildingData data)
     {
         _placedBuildings.Add(data);
+        OnBuildingRegistered?.Invoke(data);
     }
 }
