@@ -20,12 +20,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.ReportManagerInitialized(nameof(UIManager));
-    }
-
-    private void OnEnable()
-    {
         EconomyManager.Instance.OnMoneyChanged += UpdateMoneyDisplay;
+        UpdateMoneyDisplay(EconomyManager.Instance.Money);
+
+        GameManager.Instance.ReportManagerInitialized(nameof(UIManager));
     }
 
     private void OnDisable()
@@ -36,6 +34,6 @@ public class UIManager : MonoBehaviour
 
     private void UpdateMoneyDisplay(int newAmount)
     {
-        _moneyText.text = $"${newAmount:N0}";
+        _moneyText.text = $"£{newAmount:N0}";
     }
 }

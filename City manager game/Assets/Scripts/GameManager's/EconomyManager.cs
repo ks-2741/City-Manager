@@ -50,4 +50,10 @@ public class EconomyManager : MonoBehaviour
     {
         return Money >= cost;
     }
+
+    public void ApplyWeeklyChange(int amount)
+    {
+        Money += amount;
+        OnMoneyChanged?.Invoke(Money);
+    }
 }
