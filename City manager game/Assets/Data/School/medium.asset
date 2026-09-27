@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f9660a5737e9f14782deb060dabccf5, type: 3}
-  m_Name: large school
+  m_Name: medium
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
   buildingName: 
-  cost: 2000
+  cost: 500
   sector: 0
   sectorValue: 0
-  weeklyMoneyChange: -500
-  prefab: {fileID: 3514545445400558943, guid: c30fe0f9ea2e6f24e8f308f872b1d0be, type: 3}
-  maxCapacity: 300
+  weeklyMoneyChange: 200
+  prefab: {fileID: 919132149155446097, guid: 10f91dd69c2993441ba1ea738ee00e17, type: 3}
+  maxCapacity: 200
   quality: 2
