@@ -104,9 +104,11 @@ public class BuildingPlacementManager : MonoBehaviour
 
         Vector3 spawnPos = _ghostInstance.transform.position;
         Quaternion spawnRot = _ghostInstance.transform.rotation;
+        Vector3 spawnScale = _ghostInstance.transform.localScale;
         Destroy(_ghostInstance);
 
         GameObject placed = Instantiate(_currentData.prefab, spawnPos, spawnRot);
+        placed.transform.localScale = spawnScale;
 
         var buildingComponent = placed.GetComponent<Building>();
         if (buildingComponent == null)

@@ -71,6 +71,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42f339fe44de11d4aac811e77c58bc90, type: 3}
       insertIndex: -1
       addedObject: {fileID: -9221285305226473698}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 42f339fe44de11d4aac811e77c58bc90, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1467252036323624991}
   m_SourcePrefab: {fileID: 100100000, guid: 42f339fe44de11d4aac811e77c58bc90, type: 3}
 --- !u!1 &8554707101659912132 stripped
 GameObject:
@@ -91,3 +94,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlacementGhost
   _validColor: {r: 0, g: 1, b: 0, a: 0.5}
   _invalidColor: {r: 1, g: 0, b: 0, a: 0.5}
+--- !u!114 &-1467252036323624991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8554707101659912132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4916bdc223d1ff448f9bb774b6999f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Building
+  _data: {fileID: 11400000, guid: 91ea83101d72cab48bfd8ba8533513f3, type: 2}
+  skipAutoRegister: 0
