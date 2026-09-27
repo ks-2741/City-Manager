@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4916bdc223d1ff448f9bb774b6999f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Building
-  _data: {fileID: 11400000, guid: a6bbeda0be9f2254a9e6e9f1186fedf2, type: 2}
+  _data: {fileID: 11400000, guid: 69bcadc86abb64a4b9ba1c781eff080e, type: 2}
   skipAutoRegister: 0
 --- !u!114 &9058271207990278662
 MonoBehaviour:

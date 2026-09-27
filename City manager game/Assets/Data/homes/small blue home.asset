@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59556f1af74b89a4392b317b2664985a, type: 3}
-  m_Name: med
+  m_Script: {fileID: 11500000, guid: 9f9660a5737e9f14782deb060dabccf5, type: 3}
+  m_Name: small blue home
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
-  buildingName: medium
-  cost: 75
+  buildingName: blue home
+  cost: 50
   sector: 2
-  sectorValue: 30
+  sectorValue: 10
   weeklyMoneyChange: 0
+  prefab: {fileID: 6780209950404005796, guid: ad994ebf309836045a6df2c28e4935c7, type: 3}
   maxCapacity: 0
   quality: 0

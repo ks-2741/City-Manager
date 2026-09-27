@@ -49,6 +49,11 @@ public class BuildingPlacementManager : MonoBehaviour
             HandleFollowing();
         else if (_state == PlacementState.Locked)
             HandleLockedInput();
+
+        if (_state != PlacementState.Idle && Input.GetKeyDown(KeyCode.Escape))
+        {
+            CancelCurrentPlacement();
+        }
     }
 
     private void HandleFollowing()
@@ -72,7 +77,7 @@ public class BuildingPlacementManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1)) // right-click cancels entirely
         {
-            CancelPlacement();
+            CancelCurrentPlacement();
         }
     }
 
@@ -115,8 +120,12 @@ public class BuildingPlacementManager : MonoBehaviour
         ResetState();
     }
 
-    private void CancelPlacement()
+    // Hooked up to a "Cancel" UI button, and also triggered by Escape.
+    // Works from either Following or Locked state.
+    public void CancelCurrentPlacement()
     {
+        if (_state == PlacementState.Idle) return; // nothing to cancel
+
         if (_ghostInstance != null)
             Destroy(_ghostInstance);
 

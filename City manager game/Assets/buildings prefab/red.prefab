@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4916bdc223d1ff448f9bb774b6999f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Building
-  _data: {fileID: 11400000, guid: 313017853188326499f9dea7267a95e5, type: 2}
+  _data: {fileID: 11400000, guid: d382f473b2f0b7c42ba1187314a0ed74, type: 2}
   skipAutoRegister: 0
 --- !u!114 &415651636691951854
 MonoBehaviour:

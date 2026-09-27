@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59556f1af74b89a4392b317b2664985a, type: 3}
-  m_Name: school large
+  m_Script: {fileID: 11500000, guid: 9f9660a5737e9f14782deb060dabccf5, type: 3}
+  m_Name: super large
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
-  buildingName: large school
-  cost: 1500
-  sector: 0
+  buildingName: super
+  cost: 10000
+  sector: 1
   sectorValue: 0
-  weeklyMoneyChange: 0
-  maxCapacity: 300
-  quality: 2
+  weeklyMoneyChange: 1000
+  prefab: {fileID: 672608947221659332, guid: 0c2637f590c8c4b48b39001a0efd3a03, type: 3}
+  maxCapacity: 0
+  quality: 0

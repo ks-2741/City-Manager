@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59556f1af74b89a4392b317b2664985a, type: 3}
-  m_Name: big offiec building
+  m_Script: {fileID: 11500000, guid: 9f9660a5737e9f14782deb060dabccf5, type: 3}
+  m_Name: Black home
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
-  buildingName: food
-  cost: 100
-  sector: 1
-  sectorValue: 0
-  weeklyMoneyChange: 120
+  buildingName: Black hime home
+  cost: 200
+  sector: 2
+  sectorValue: 40
+  weeklyMoneyChange: 0
+  prefab: {fileID: 9097669189421857541, guid: f052eb6b9ae38c44186877b83d36b51e, type: 3}
   maxCapacity: 0
   quality: 0
